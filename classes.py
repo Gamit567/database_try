@@ -23,5 +23,5 @@ class student:
 
 
 
-jeff = student("jeff",777,2025,any)
+
 

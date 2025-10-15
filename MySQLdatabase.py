@@ -20,6 +20,5 @@ try:
 
   conn.commit()
   conn.close()
-  print("sucess")
 except:
   print("error error")
