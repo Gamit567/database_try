@@ -16,7 +16,6 @@ while True:
 conn = sqlite3.connect("mydatabase.db")
 
 cursor = conn.cursor()
-
 r = cursor.execute(sqr)
 for res in r:
     print(res[0])
