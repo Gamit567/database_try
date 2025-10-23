@@ -17,8 +17,16 @@ try:
       year TEXT
   )
   """)
+  cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Modules(
+        id TEXT,
+        module TEXT,
+        grade TEXT
+    )                        
+    """)
 
   conn.commit()
   conn.close()
+  print("success creating files")
 except:
   print("error error")
