@@ -29,6 +29,8 @@ class student:
                 conn.commit()
                 conn.close()
                 print("successfully added")
+            except sqlite3.IntegrityError:
+                print("adding to database error")
             except:
                 print("error adding to database student")
         except:
