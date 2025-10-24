@@ -3,7 +3,7 @@
 
 ##test user
 from Student import student
-
+from searcher import getting_specific
 
 jeff = student("jeff",777,2025)
 
@@ -17,6 +17,6 @@ def adding_modules():
     jeff.addmodule(module,grade)
 
 
-add()
-adding_modules()
-    
+#add()
+#adding_modules()
+getting_specific()

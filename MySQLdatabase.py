@@ -4,29 +4,29 @@ import sqlite3
 #  it if it doesn't exist)
 
 
+def creating():
+  try:
+    conn = sqlite3.connect('mydatabase.db')
+    cursor = conn.cursor()
 
-try:
-  conn = sqlite3.connect('mydatabase.db')
-  cursor = conn.cursor()
-
-  # Create the students table
-  cursor.execute("""
-  CREATE TABLE IF NOT EXISTS students (
-      name TEXT,
-      ID TEXT,
-      year TEXT
-  )
-  """)
-  cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Modules(
-        id TEXT,
-        module TEXT,
-        grade TEXT
-    )                        
+    # Create the students table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS students (
+        name TEXT,
+        ID TEXT,
+        year TEXT
+    )
     """)
+    cursor.execute("""
+      CREATE TABLE IF NOT EXISTS Modules(
+          id TEXT,
+          module TEXT,
+          grade TEXT
+      )                        
+      """)
 
-  conn.commit()
-  conn.close()
-  print("success creating files")
-except:
-  print("error error")
+    conn.commit()
+    conn.close()
+    print("success creating files")
+  except:
+    print("error error")
