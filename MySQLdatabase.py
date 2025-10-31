@@ -39,3 +39,6 @@ def deleting():
   cursor.execute("DROP TABLE IF EXISTS students")
   cursor.execute("DROP TABLE IF EXISTS Modules")
   
+if __name__ == "__main__":
+  deleting()
+  creating()

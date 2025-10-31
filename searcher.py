@@ -27,3 +27,5 @@ def getting_modules_grades(ID):
     student = cursor.fetchall()
     conn.close()
     return student
+
+
