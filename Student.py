@@ -31,15 +31,18 @@ class student:
             conn = sqlite3.connect('mydatabase.db')
             cursor = conn.cursor()
             try:
-            
-                cursor.execute("INSERT INTO students(name,ID,year) VALUES (?,?,?)",(self.getname(),self.getID(),self.getyear()))
-                conn.commit()
-                conn.close()
-                print("successfully added")
-            except sqlite3.IntegrityError:
-                print("duplicate students detected")
+                ##instead check if the id already exists
+                cursor.execute("SELECT * FROM students WHERE id = ?",(self.getID(),))
+                check = cursor.fetchall()
+                if not check:
+                    cursor.execute("INSERT INTO students(name,ID,year) VALUES (?,?,?)",(self.getname(),self.getID(),self.getyear()))
+                    conn.commit()
+                    conn.close()
+                    print("successfully added")
+                else:
+                    print("students with this ID already exists")
             except:
-                print("error adding to database student")
+                print("error adding to database student",self.getname(),self.getID())
         except:
             print("error connecting to student")
         
