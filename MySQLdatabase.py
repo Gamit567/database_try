@@ -17,6 +17,7 @@ def creating():
         year TEXT
     )
     """)
+    ##create the modules table
     cursor.execute("""
       CREATE TABLE IF NOT EXISTS Modules(
           id TEXT,
@@ -39,4 +40,4 @@ def deleting():
   cursor.execute("DROP TABLE IF EXISTS Modules")
   
 creating()
-deleting()
+#deleting()

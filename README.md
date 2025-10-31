@@ -6,3 +6,5 @@ searcher.py is to make quierying the information easy and safe
 mydb creates the database/ all information is currently stored locally
 sqldatabase is my version of the local data.
 
+the student Table uses Id as a primary key because students should be unique and no student should have the same ID twice.
+the module class can have many modules connected to one student id.

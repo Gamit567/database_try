@@ -16,7 +16,12 @@ def adding_modules():
     grade = 65
     jeff.addmodule(module,grade)
 
+def add_duplicate():
+    add()
 
-#add()
+
 #adding_modules()
+
+add()
+
 getting_specific()
