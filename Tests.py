@@ -9,24 +9,6 @@ jeff = student("jeff",777,2025)
 claire = student("claire",777,2025)
 brianna = student("brianna",778,2026)
 
-def add():
-    jeff.adding()
-    
-def adding_modules():
-    module = "science"
-    grade = 65
-    jeff.addmodule(module,grade)
-
-def add_duplicate():
-    add()
-
-
-#adding_modules()
-
-add()
-
-searcher.getting_specific()
-
 def Test1():
     #testing adding to database
     jeff.adding()
