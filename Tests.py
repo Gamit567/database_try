@@ -27,29 +27,31 @@ def Test1():
     
     #testing adding to database
     jeff.adding()
-   
+    brianna.adding()
+    print("current database is now",searcher.getting_all())
 
-#def Test2():
+def Test2():
     #test adding same Id to database
-    ##claire.adding()
-    ##should return an error
-#def Test3():
+    print("attempting to add clair with the same id as jeff")
+    claire.adding()
+    #should return an error
+def Test3():
     #test adding a module
-    #module = "science"
-    #grade = 67
-    #jeff.addmodule(module,grade)
+    module = "science"
+    grade = 67
+    jeff.addmodule(module,grade)
 
-#def Test4():
-#    #testing searcher/py
- #   searcher.getting_all()
- #   ID = input("enter a ID: ")
- #   searcher.getting_specific()
- #   searcher.getting_modules_grades(ID)
+
+def Test4():
+    #testing searcher/py
+    searcher.getting_all()
+    ID = input("enter a ID: ")
+    print(searcher.getting_specific(ID))
+    print(searcher.getting_modules_grades(ID))
 
 if __name__ == "__main__":
     testsetup()
     Test1()
-    
-  #  Test2()
-   # Test3()
-    #Test4()
+    Test2()
+    Test3()
+    Test4()

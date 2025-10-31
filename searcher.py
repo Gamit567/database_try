@@ -1,12 +1,11 @@
 import sqlite3
 
 
-def getting_specific():
+def getting_specific(ID):
     #getting a specific student
-    answer = input("find user by id ")
     conn = sqlite3.connect("mydatabase.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM students WHERE ID=? ",(answer,))
+    cursor.execute("SELECT * FROM students WHERE ID=? ",(ID,))
     student = cursor.fetchall()
     conn.close()
     return student
@@ -23,9 +22,11 @@ def getting_all():
 def getting_modules_grades(ID):
     conn = sqlite3.connect("mydatabase.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Modules WHERE ID=? ",ID)
+    cursor.execute("SELECT * FROM Modules WHERE ID=? ",(ID,))
     student = cursor.fetchall()
     conn.close()
     return student
 
 
+if __name__ == "__main__":
+    print(getting_all())
