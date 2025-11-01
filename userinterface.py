@@ -19,6 +19,10 @@ class interface:
         self.welcomescreen = tk.Label(self.main,text='WELCOME')
         self.enterstudent = tk.Button(self.main,text='enter student',width=25,height=2,command=self.enterscreen)
         self.findstudent = tk.Button(self.main,text='find student',width=25,height=2,command=self.findscreen)
+
+        #enter frames button
+        self.back = tk.Button(self.screen,text="return",width= 25,height=2,command = self.inital_buttons)
+        
     def inital_buttons(self):
         # makes other frames empty
         self.enter.forget()
@@ -30,13 +34,14 @@ class interface:
         self.welcomescreen.pack()
         self.enterstudent.pack()
         self.findstudent.pack()
-
+        self.back.pack(side="bottom")
     def enterscreen(self):
         self.main.forget()
         self.enter.pack()
+        
     def findscreen(self):
         self.main.forget()
         self.find.pack()
-
+       
 s = interface()
 s.screen.mainloop()
