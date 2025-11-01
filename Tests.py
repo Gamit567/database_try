@@ -40,6 +40,8 @@ def Test3():
     module = "science"
     grade = 67
     jeff.addmodule(module,grade)
+    brianna.addmodule(module,grade+18)
+    print("current module table: ",searcher.getting_modules_grades(777),searcher.getting_modules_grades(778))
 
 
 def Test4():
