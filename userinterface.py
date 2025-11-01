@@ -1,5 +1,7 @@
 import tkinter as tk
-
+import Student
+import searcher
+from tkinter import messagebox
 class interface:
     def __init__(self):
         #making the main screen
@@ -21,13 +23,10 @@ class interface:
         self.back = tk.Button(self.screen,text="return",width= 25,height=2,command = self.inital_buttons)
         
         ## making enter frame widgets
-        self.enterlabel = tk.Label(self.enter,text="ENTER ID ")
-        self.enterId = tk.Entry(self.enter)
-        self.getId = tk.Button(self.enter,text="submit",command = self.getting_input)
+        self.enterlabel = tk.Label(self.find,text="ENTER ID ")
+        self.findId = tk.Entry(self.find)
+        self.getId = tk.Button(self.find,text="submit",command = self.getting_input)
         
-
-        ##
-
     def inital_buttons(self):
         # makes other frames empty
         self.enter.forget()
@@ -46,14 +45,16 @@ class interface:
         self.enter.pack()
         #adding buttons
         self.enterlabel.pack()
-        self.enterId.pack()
+        self.findId.pack()
         self.getId.pack()
     def findscreen(self):
         self.main.forget()
         self.find.pack()
     def getting_input(self):
-        self.r = self.enterId.get()
-        print(self.r)
+        self.r = self.findId.get()
+        messagebox.showinfo("student",searcher.getting_specific(self.r) +  searcher.getting_modules_grades(self.r))
+       
+
         
 
 s = interface()
