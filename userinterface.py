@@ -1,7 +1,4 @@
-
 import tkinter as tk
-
-
 
 class interface:
     def __init__(self):
@@ -14,15 +11,23 @@ class interface:
         self.find = tk.Frame(self.screen)
         self.all_buttons()
         self.inital_buttons()
+
     def all_buttons(self):
         #making the buttons
         self.welcomescreen = tk.Label(self.main,text='WELCOME')
         self.enterstudent = tk.Button(self.main,text='enter student',width=25,height=2,command=self.enterscreen)
         self.findstudent = tk.Button(self.main,text='find student',width=25,height=2,command=self.findscreen)
-
-        #enter frames button
+        # all screens have a back button at the botto,
         self.back = tk.Button(self.screen,text="return",width= 25,height=2,command = self.inital_buttons)
         
+        ## making enter frame widgets
+        self.enterlabel = tk.Label(self.enter,text="ENTER ID ")
+        self.enterId = tk.Entry(self.enter)
+        self.getId = tk.Button(self.enter,text="submit",command = self.getting_input)
+        
+
+        ##
+
     def inital_buttons(self):
         # makes other frames empty
         self.enter.forget()
@@ -35,13 +40,21 @@ class interface:
         self.enterstudent.pack()
         self.findstudent.pack()
         self.back.pack(side="bottom")
+
     def enterscreen(self):
         self.main.forget()
         self.enter.pack()
-        
+        #adding buttons
+        self.enterlabel.pack()
+        self.enterId.pack()
+        self.getId.pack()
     def findscreen(self):
         self.main.forget()
         self.find.pack()
-       
+    def getting_input(self):
+        self.r = self.enterId.get()
+        print(self.r)
+        
+
 s = interface()
 s.screen.mainloop()
