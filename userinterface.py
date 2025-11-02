@@ -1,5 +1,5 @@
 import tkinter as tk
-import Student
+from Student import student
 import searcher
 from tkinter import messagebox
 class interface:
@@ -20,12 +20,22 @@ class interface:
         self.enterstudent = tk.Button(self.main,text='enter student',width=25,height=2,command=self.enterscreen)
         self.findstudent = tk.Button(self.main,text='find student',width=25,height=2,command=self.findscreen)
         # all screens have a back button at the botto,
-        self.back = tk.Button(self.screen,text="return",width= 25,height=2,command = self.inital_buttons)
+        self.back = tk.Button(self.screen,text='return',width= 25,height=2,command = self.inital_buttons)
         
-        ## making enter frame widgets
+        ## making find frame widgets
         self.enterlabel = tk.Label(self.find,text="ENTER ID ")
         self.findId = tk.Entry(self.find)
-        self.getId = tk.Button(self.find,text="submit",command = self.getting_input)
+        self.getId = tk.Button(self.find,text='submit',command = self.getting_input,height=2,width=25)
+
+        #making enter frame widgets
+        self.userlabel = tk.Label(self.enter,text='enter name')
+        self.nameentry = tk.Entry(self.enter)
+        self.idlabel = tk.Label(self.enter,text='enter id')
+        self.identry = tk.Entry(self.enter)
+        self.year = tk.Label(self.enter,text='enter year')
+        self.yearentry = tk.Entry(self.enter)
+        self.submit = tk.Button(self.enter,text='submit',command=self.addingto,height=25)
+
         
     def inital_buttons(self):
         # makes other frames empty
@@ -44,18 +54,32 @@ class interface:
         self.main.forget()
         self.enter.pack()
         #adding buttons
-        self.enterlabel.pack()
-        self.findId.pack()
-        self.getId.pack()
+        self.userlabel.pack()
+        self.nameentry.pack()
+        self.idlabel.pack()
+        self.identry.pack()
+        self.year.pack()
+        self.yearentry.pack()
+        self.submit.pack()
     def findscreen(self):
         self.main.forget()
         self.find.pack()
+        self.enterlabel.pack()
+        self.findId.pack()
+        self.getId.pack()
     def getting_input(self):
         self.r = self.findId.get()
         messagebox.showinfo("student",searcher.getting_specific(self.r) +  searcher.getting_modules_grades(self.r))
        
 
-        
+    def addingto(self):
+        name = self.nameentry.get()
+        id = self.identry.get()
+        year = self.yearentry.get()
+
+        new_student = student(name,id,year)
+        new_student.adding()
+        messagebox.showinfo("student added :",searcher.getting_specific(new_student.getID()))
 
 s = interface()
 s.screen.mainloop()
