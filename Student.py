@@ -17,13 +17,15 @@ class student:
                 c.execute("INSERT INTO Modules(id,module,grade) VALUES (?,?,?)",(self.getID(),module,grade))
                 conn.commit()
                 conn.close()
+                return "success at adding modules"
             except:
                 #catching a error trying to insert the vakues
-                print("error adding grades")
                 conn.close()
+                return "error adding grades"
+                
         except:
             #error trying to connect to database
-            print("error connecting to database Grades")
+            return "error connecting to database Grades"
 
     def adding(self):
         ##adding into the grades
@@ -38,13 +40,13 @@ class student:
                     cursor.execute("INSERT INTO students(name,ID,year) VALUES (?,?,?)",(self.getname(),self.getID(),self.getyear()))
                     conn.commit()
                     conn.close()
-                    print("successfully added")
+                    return "successfully added"
                 else:
                     print("students with this ID already exists")
             except:
-                print("error adding to database student",self.getname(),self.getID())
+                return "error adding to database student" + self.getname() + self.getID()
         except:
-            print("error connecting to student")
+            return"error connecting to student"
         
     ##getters if neeeded
     def getname(self):

@@ -11,8 +11,9 @@ class interface:
         self.main = tk.Frame(self.screen)
         self.enter = tk.Frame(self.screen)
         self.find = tk.Frame(self.screen)
+        ##inializing the buttons and the starter screen
         self.all_buttons()
-        self.inital_buttons()
+        self.starterscreen()
 
     def all_buttons(self):
         #making the buttons
@@ -27,6 +28,10 @@ class interface:
         self.findId = tk.Entry(self.find)
         self.getId = tk.Button(self.find,text='submit',command = self.getting_input,height=2,width=25)
 
+        self.addstudent = tk.Button("press here to add a new student")
+        self.addmodules = tk.Button("Press here to enter modules")
+
+
         #making enter frame widgets
         self.userlabel = tk.Label(self.enter,text='enter name')
         self.nameentry = tk.Entry(self.enter)
@@ -36,8 +41,7 @@ class interface:
         self.yearentry = tk.Entry(self.enter)
         self.submit = tk.Button(self.enter,text='submit',command=self.addingto,height=25)
 
-        
-    def inital_buttons(self):
+    def starterscreen(self):
         # makes other frames empty
         self.enter.forget()
         self.find.forget()
@@ -53,6 +57,8 @@ class interface:
     def enterscreen(self):
         self.main.forget()
         self.enter.pack()
+
+        self.addstudent.p
         #adding buttons
         self.userlabel.pack()
         self.nameentry.pack()
@@ -61,17 +67,18 @@ class interface:
         self.year.pack()
         self.yearentry.pack()
         self.submit.pack()
+        
     def findscreen(self):
         self.main.forget()
         self.find.pack()
         self.enterlabel.pack()
         self.findId.pack()
         self.getId.pack()
+
     def getting_input(self):
         self.r = self.findId.get()
         messagebox.showinfo("student",searcher.getting_specific(self.r) +  searcher.getting_modules_grades(self.r))
        
-
     def addingto(self):
         name = self.nameentry.get()
         id = self.identry.get()
@@ -80,6 +87,8 @@ class interface:
         new_student = student(name,id,year)
         new_student.adding()
         messagebox.showinfo("student added :",searcher.getting_specific(new_student.getID()))
+        ##return to original screen
+        self.starterscreen()
 
 s = interface()
 s.screen.mainloop()
