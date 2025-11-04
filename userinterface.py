@@ -2,6 +2,7 @@ import tkinter as tk
 from Student import student
 import searcher
 from tkinter import messagebox
+import MySQLdatabase
 class interface:
     def __init__(self):
         #making the main screen
@@ -11,6 +12,8 @@ class interface:
         self.main = tk.Frame(self.screen)
         self.enter = tk.Frame(self.screen)
         self.find = tk.Frame(self.screen)
+        self.makestudent = tk.Frame(self.screen)
+        self.makemodules = tk.Frame(self.screen)
         ##inializing the buttons and the starter screen
         self.all_buttons()
         self.starterscreen()
@@ -21,30 +24,37 @@ class interface:
         self.enterstudent = tk.Button(self.main,text='enter student',width=25,height=2,command=self.enterscreen)
         self.findstudent = tk.Button(self.main,text='find student',width=25,height=2,command=self.findscreen)
         # all screens have a back button at the botto,
-        self.back = tk.Button(self.screen,text='return',width= 25,height=2,command = self.inital_buttons)
-        
+        self.back = tk.Button(self.screen,text='return',width= 25,height=2,command = self.starterscreen)
         ## making find frame widgets
         self.enterlabel = tk.Label(self.find,text="ENTER ID ")
         self.findId = tk.Entry(self.find)
         self.getId = tk.Button(self.find,text='submit',command = self.getting_input,height=2,width=25)
-
-        self.addstudent = tk.Button("press here to add a new student")
-        self.addmodules = tk.Button("Press here to enter modules")
-
-
-        #making enter frame widgets
-        self.userlabel = tk.Label(self.enter,text='enter name')
-        self.nameentry = tk.Entry(self.enter)
-        self.idlabel = tk.Label(self.enter,text='enter id')
-        self.identry = tk.Entry(self.enter)
-        self.year = tk.Label(self.enter,text='enter year')
-        self.yearentry = tk.Entry(self.enter)
-        self.submit = tk.Button(self.enter,text='submit',command=self.addingto,height=25)
-
+        # buttons for enter user screen, each will remake the frame either enter a new student or enter a new module
+        self.addstudent = tk.Button(self.enter,text="press here to add a new student",command=self.student_details)
+        self.addmodules = tk.Button(self.enter,text="Press here to enter modules",command = self.module_details)
+        # buttons for entering the student details. will call a function that handles the entering into the student details
+        self.userlabel = tk.Label(self.makestudent,text='enter name')
+        self.nameentry = tk.Entry(self.makestudent)
+        self.idlabel = tk.Label(self.makestudent,text='enter id')
+        self.identry = tk.Entry(self.makestudent)
+        self.year = tk.Label(self.makestudent,text='enter year')
+        self.yearentry = tk.Entry(self.makestudent)
+        self.submit = tk.Button(self.makestudent,text='submit',command=self.addingto,height=25)
+        #buttons for making the module details
+        self.enterId = tk.Label(self.makemodules,text='enter ID')
+        self.IDentry = tk.Entry(self.makemodules)
+        self.entermodule = tk.Label(self.makemodules,text = 'enter module')
+        self.moduleEntry = tk.Entry(self.makemodules)
+        self.entergrade = tk.Label(self.makemodules,text='enter the grade')
+        self.gradeEntry = tk.Entry(self.makemodules)
+        self.Submitmodule = tk.Button(self.makemodules,text='submt',command=self.starterscreen())
+       
     def starterscreen(self):
         # makes other frames empty
         self.enter.forget()
         self.find.forget()
+        self.makemodules.forget()
+        self.makestudent.forget()
         #getting main frame
         self.main.pack()
         self.screen.title("database system")
@@ -58,8 +68,27 @@ class interface:
         self.main.forget()
         self.enter.pack()
 
-        self.addstudent.p
-        #adding buttons
+        self.addstudent.pack()
+        self.addmodules.pack()
+        #adding 
+
+    def module_details(self):
+        self.enter.forget()
+        self.makemodules.pack()
+        self.enterId.pack()
+        self.IDentry.pack()
+        self.entermodule.pack()
+        self.moduleEntry.pack()
+        self.entergrade.pack()
+        self.gradeEntry.pack()
+        self.Submitmodule.pack()
+    
+    def making_student(self): 
+        pass
+        
+    def student_details(self):
+        self.enter.forget()
+        self.makestudent.pack()
         self.userlabel.pack()
         self.nameentry.pack()
         self.idlabel.pack()
@@ -90,5 +119,8 @@ class interface:
         ##return to original screen
         self.starterscreen()
 
+##making sure the database was created
+MySQLdatabase.creating()
+##running the progra,
 s = interface()
 s.screen.mainloop()
