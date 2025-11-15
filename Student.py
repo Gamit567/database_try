@@ -6,27 +6,6 @@ class student:
         self.ID = ID
         self.year = year
     
-    def addmodule(self,module,grade):
-        ## adding module and grade into the database
-        try:
-            #connecting to database
-            conn = sqlite3.connect('mydatabase.db')
-            c = conn.cursor()
-            try:
-                ##inserting values
-                c.execute("INSERT INTO Modules(id,module,grade) VALUES (?,?,?)",(self.getID(),module,grade))
-                conn.commit()
-                conn.close()
-                return "success at adding modules"
-            except:
-                #catching a error trying to insert the vakues
-                conn.close()
-                return "error adding grades"
-                
-        except:
-            #error trying to connect to database
-            return "error connecting to database Grades"
-
     def adding(self):
         ##adding into the grades
         try:
@@ -62,4 +41,24 @@ class student:
     
     
 
-    
+class Module:
+    def addmodule(self,module,grade,id):
+        ## adding module and grade into the database
+        try:
+            #connecting to database
+            conn = sqlite3.connect('mydatabase.db')
+            c = conn.cursor()
+            try:
+                ##inserting values
+                c.execute("INSERT INTO Modules(id,module,grade) VALUES (?,?,?)",(id,module,grade))
+                conn.commit()
+                conn.close()
+                return "success at adding modules"
+            except:
+                #catching a error trying to insert the vakues
+                conn.close()
+                return "error adding grades"
+                
+        except:
+            #error trying to connect to database
+            return "error connecting to database Grades"
