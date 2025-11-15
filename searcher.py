@@ -6,7 +6,7 @@ def getting_specific(ID):
     conn = sqlite3.connect("mydatabase.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM students WHERE ID=? ",(ID,))
-    student = cursor.fetchall()
+    student = cursor.fetchone()
     conn.close()
     return student
 
@@ -29,4 +29,4 @@ def getting_modules_grades(ID):
 
 
 if __name__ == "__main__":
-    print(getting_all())
+    print(getting_modules_grades(0))

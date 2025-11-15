@@ -1,5 +1,5 @@
 import tkinter as tk
-from Student import student
+from Student import student,Module
 import searcher
 from tkinter import messagebox
 import MySQLdatabase
@@ -47,7 +47,7 @@ class interface:
         self.moduleEntry = tk.Entry(self.makemodules)
         self.entergrade = tk.Label(self.makemodules,text='enter the grade')
         self.gradeEntry = tk.Entry(self.makemodules)
-        self.Submitmodule = tk.Button(self.makemodules,text='submt',command=self.starterscreen())
+        self.Submitmodule = tk.Button(self.makemodules,text='submit',command=self.addingmodule)
        
     def starterscreen(self):
         # makes other frames empty
@@ -83,8 +83,18 @@ class interface:
         self.gradeEntry.pack()
         self.Submitmodule.pack()
     
-    def making_student(self): 
-        pass
+    def addingmodule(self): 
+        self.id = self.identry.get()
+        self.module = self.moduleEntry.get()
+        self.grade = self.gradeEntry.get()
+        module = Module()
+        module.addmodule(self.module,self.grade,self.id)
+        messagebox.showinfo(
+            "Student Info",
+            f"id: {self.id}\nmodule: {self.module}\ngrade: {self.grade}"
+        )
+
+        self.starterscreen()
         
     def student_details(self):
         self.enter.forget()
@@ -106,8 +116,9 @@ class interface:
 
     def getting_input(self):
         self.r = self.findId.get()
-        messagebox.showinfo("student",searcher.getting_specific(self.r) +  searcher.getting_modules_grades(self.r))
-       
+        grades = searcher.getting_modules_grades(self.r)
+        info = "student",searcher.getting_specific(self.r)
+        messagebox.showinfo("student",grades)
     def addingto(self):
         name = self.nameentry.get()
         id = self.identry.get()
