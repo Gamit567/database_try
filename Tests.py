@@ -2,14 +2,14 @@
 
 import sqlite3
 
-from Student import student
+from Student import student,Module
 import searcher
 
 ##for tests
 jeff = student("jeff",777,2025)
 claire = student("claire",777,2025)
 brianna = student("brianna",778,2026)
-
+m = Module()
 ### for the purpose of the tests the database should be clear and unfixed
 
 
@@ -39,8 +39,8 @@ def Test3():
     #test adding a module
     module = "science"
     grade = 67
-    jeff.addmodule(module,grade)
-    brianna.addmodule(module,grade+18)
+    m.addmodule(module,grade,jeff.getID())
+    m.addmodule(module,grade+18,brianna.getID())
     print("current module table: ",searcher.getting_modules_grades(777),searcher.getting_modules_grades(778))
 
 
