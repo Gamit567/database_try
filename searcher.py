@@ -1,5 +1,5 @@
 import sqlite3
-
+from Student import Module
 
 def getting_specific(ID):
     #getting a specific student
@@ -29,4 +29,6 @@ def getting_modules_grades(ID):
 
 
 if __name__ == "__main__":
+    m = Module()
+    print(getting_all())
     print(getting_modules_grades(0))

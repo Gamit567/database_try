@@ -84,11 +84,11 @@ class interface:
         self.Submitmodule.pack()
     
     def addingmodule(self): 
-        self.id = self.identry.get()
+        self.id = self.IDentry.get()
         self.module = self.moduleEntry.get()
         self.grade = self.gradeEntry.get()
-        module = Module()
-        module.addmodule(self.module,self.grade,self.id)
+        m2 = Module()
+        m2.addmodule(self.module,self.grade,self.id)
         messagebox.showinfo(
             "Student Info",
             f"id: {self.id}\nmodule: {self.module}\ngrade: {self.grade}"
@@ -117,7 +117,7 @@ class interface:
     def getting_input(self):
         self.r = self.findId.get()
         grades = searcher.getting_modules_grades(self.r)
-        info = "student",searcher.getting_specific(self.r)
+        info = searcher.getting_specific(self.r)
         messagebox.showinfo("student",grades)
     def addingto(self):
         name = self.nameentry.get()
