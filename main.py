@@ -9,23 +9,29 @@ class interface:
     def __init__(self):
         #making the main screen
         self.screen = tk.Tk()
-        self.screen.geometry("500x250")
+        self.screen.geometry("914x523")
         #making the frames
-        self.main = ttk.Frame(self.screen)
-        self.enter = ttk.Frame(self.screen)
-        self.find = ttk.Frame(self.screen)
-        self.makestudent = ttk.Frame(self.screen)
-        self.makemodules = ttk.Frame(self.screen)
+       
         ##inializing the buttons and the starter screen
-        self.all_buttons()
-        self.starterscreen_pack()
+
         # Create a style
         style = ttk.Style(self.screen)
         style.theme_use("clam")
+        self.screen.configure(bg="white")
+        style.configure("White.TFrame", background="white")
         style.configure("Big.TButton",font=("Segoe UI", 11),padding=(30, 20))
         style.configure("cancel.TButton",font=("Segoe UI", 11),padding=(20, 20),background="red")
-        style.configure("label.TLabel", font=("Segoe UI", 15, "bold"))
+        style.configure("submit.TButton",font=("Segoe UI", 11),padding=(20, 20),background="green")
+        style.configure("label.TLabel", font=("Segoe UI", 15, "bold"),background="white")
 
+        self.main = ttk.Frame(self.screen,style="White.TFrame")
+        self.enter = ttk.Frame(self.screen,style="White.TFrame")
+        self.find = ttk.Frame(self.screen,style="White.TFrame")
+        self.makestudent = ttk.Frame(self.screen,style="White.TFrame")
+        self.makemodules = ttk.Frame(self.screen,style="White.TFrame")
+
+        self.all_buttons()
+        self.starterscreen_pack()
 
          
 
@@ -52,7 +58,7 @@ class interface:
         self.identry = ttk.Entry(self.makestudent)
         self.year = ttk.Label(self.makestudent,text='enter year',style="label.TLabel")
         self.yearentry = ttk.Entry(self.makestudent)
-        self.submit = ttk.Button(self.makestudent,text='submit',command=self.adding_student,style="Big.TButton")
+        self.submit = ttk.Button(self.makestudent,text='submit',command=self.adding_student,style="submit.TButton")
         #buttons for making the module details
         self.enterId = ttk.Label(self.makemodules,text='enter ID',style="label.TLabel")
         self.IDentry = ttk.Entry(self.makemodules)
@@ -60,7 +66,7 @@ class interface:
         self.moduleEntry = ttk.Entry(self.makemodules)
         self.entergrade = ttk.Label(self.makemodules,text='enter the grade',style="label.TLabel")
         self.gradeEntry = ttk.Entry(self.makemodules)
-        self.Submitmodule = ttk.Button(self.makemodules,text='submit',command=self.addingmodule,style="Big.TButton")
+        self.Submitmodule = ttk.Button(self.makemodules,text='submit',command=self.addingmodule,style="submit.TButton")
         self.entryboxes_list = [self.findId,self.nameentry,self.identry,self.yearentry,self.IDentry]
         ### clear  all entry boxes:
         
