@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import ttk
+from tkinter import font
 from Student import student,Module
 import searcher
 from tkinter import messagebox
@@ -9,50 +11,49 @@ class interface:
         self.screen = tk.Tk()
         self.screen.geometry("500x250")
         #making the frames
-        self.main = tk.Frame(self.screen)
-        self.enter = tk.Frame(self.screen)
-        self.find = tk.Frame(self.screen)
-        self.makestudent = tk.Frame(self.screen)
-        self.makemodules = tk.Frame(self.screen)
+        self.main = ttk.Frame(self.screen)
+        self.enter = ttk.Frame(self.screen)
+        self.find = ttk.Frame(self.screen)
+        self.makestudent = ttk.Frame(self.screen)
+        self.makemodules = ttk.Frame(self.screen)
         ##inializing the buttons and the starter screen
         self.all_buttons()
         self.starterscreen_pack()
 
     def all_buttons(self):
+        bold_font = font.Font(family="Arial", size=12, weight="bold")
         #making the buttons
-        self.welcomescreen = tk.Label(self.main,text='WELCOME')
-        self.enterstudent = tk.Button(self.main,text='enter student',width=25,height=2,command=self.enterscreen_pack)
-        self.findstudent = tk.Button(self.main,text='find student',width=25,height=2,command=self.findscreen_pack)
+        self.welcomescreen = ttk.Label(self.main,text='WELCOME',font=bold_font)
+        self.enterstudent = ttk.Button(self.main,text='enter student',command=self.enterscreen_pack)
+        self.findstudent = ttk.Button(self.main,text='find student',command=self.findscreen_pack)
         # all screens have a back button at the botto,
-        self.back = tk.Button(self.screen,text='return',width= 25,height=2,command = self.starterscreen_pack)
+        self.back = ttk.Button(self.screen,text='cancel',command = self.starterscreen_pack)
         ## making find frame widgets
-        self.enterlabel = tk.Label(self.find,text="ENTER ID ")
-        self.findId = tk.Entry(self.find)
-        self.getId = tk.Button(self.find,text='submit',command = self.getting_input,height=2,width=25)
+        self.enterlabel = ttk.Label(self.find,text="ENTER ID ")
+        self.findId = ttk.Entry(self.find)
+        self.getId = ttk.Button(self.find,text='submit',command = self.getting_input)
         # buttons for enter user screen, each will remake the frame either enter a new student or enter a new module
-        self.addstudent = tk.Button(self.enter,text="press here to add a new student",command=self.student_details_pack)
-        self.addmodules = tk.Button(self.enter,text="Press here to enter modules",command = self.module_details_pack)
+        self.addstudent = ttk.Button(self.enter,text="press here to add a new student",command=self.student_details_pack)
+        self.addmodules = ttk.Button(self.enter,text="Press here to enter modules",command = self.module_details_pack)
         # buttons for entering the student details. will call a function that handles the entering into the student details
-        self.userlabel = tk.Label(self.makestudent,text='enter name')
-        self.nameentry = tk.Entry(self.makestudent)
-        self.idlabel = tk.Label(self.makestudent,text='enter id')
-        self.identry = tk.Entry(self.makestudent)
-        self.year = tk.Label(self.makestudent,text='enter year')
-        self.yearentry = tk.Entry(self.makestudent)
-        self.submit = tk.Button(self.makestudent,text='submit',command=self.adding_student,height=25)
+        self.userlabel = ttk.Label(self.makestudent,text='enter name')
+        self.nameentry = ttk.Entry(self.makestudent)
+        self.idlabel = ttk.Label(self.makestudent,text='enter id',font=bold_font)
+        self.identry = ttk.Entry(self.makestudent)
+        self.year = ttk.Label(self.makestudent,text='enter year',font=bold_font)
+        self.yearentry = ttk.Entry(self.makestudent)
+        self.submit = ttk.Button(self.makestudent,text='submit',command=self.adding_student)
         #buttons for making the module details
-        self.enterId = tk.Label(self.makemodules,text='enter ID')
-        self.IDentry = tk.Entry(self.makemodules)
-        self.entermodule = tk.Label(self.makemodules,text = 'enter module')
-        self.moduleEntry = tk.Entry(self.makemodules)
-        self.entergrade = tk.Label(self.makemodules,text='enter the grade')
-        self.gradeEntry = tk.Entry(self.makemodules)
-        self.Submitmodule = tk.Button(self.makemodules,text='submit',command=self.addingmodule)
+        self.enterId = ttk.Label(self.makemodules,text='enter ID',font=bold_font)
+        self.IDentry = ttk.Entry(self.makemodules)
+        self.entermodule = ttk.Label(self.makemodules,text = 'enter module',font=bold_font)
+        self.moduleEntry = ttk.Entry(self.makemodules)
+        self.entergrade = ttk.Label(self.makemodules,text='enter the grade',font=bold_font)
+        self.gradeEntry = ttk.Entry(self.makemodules)
+        self.Submitmodule = ttk.Button(self.makemodules,text='submit',command=self.addingmodule)
         self.entryboxes_list = [self.findId,self.nameentry,self.identry,self.yearentry,self.IDentry]
         ### clear  all entry boxes:
-      
-
-       
+        
     def starterscreen_pack(self):
         # makes other frames empty
         self.enter.forget()
@@ -102,7 +103,7 @@ class interface:
             )
         for e in (self.IDentry,self.moduleEntry,self.gradeEntry):
             e.delete(0,tk.END)
-        self.starterscreen_pack()
+        
         
     def student_details_pack(self):
         self.enter.forget()
@@ -128,7 +129,7 @@ class interface:
         info = searcher.getting_specific(self.r)
                 
         self.findId.delete(0,tk.END)
-        messagebox.showinfo("student",grades)
+        messagebox.showinfo(info,grades)
 
     def adding_student(self):
         name = self.nameentry.get()
@@ -147,7 +148,9 @@ class interface:
 
         
 ##making sure the database was created
-MySQLdatabase.creating()
-##running the progra,
-s = interface()
-s.screen.mainloop()
+
+if __name__ == "__main__":
+    MySQLdatabase.creating()
+    ##running the progra,
+    s = interface()
+    s.screen.mainloop()
