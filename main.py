@@ -19,38 +19,48 @@ class interface:
         ##inializing the buttons and the starter screen
         self.all_buttons()
         self.starterscreen_pack()
+        # Create a style
+        style = ttk.Style(self.screen)
+        style.theme_use("clam")
+        style.configure("Big.TButton",font=("Segoe UI", 11),padding=(30, 20))
+        style.configure("cancel.TButton",font=("Segoe UI", 11),padding=(20, 20),background="red")
+        style.configure("label.TLabel", font=("Segoe UI", 15, "bold"))
+
+
+         
+
 
     def all_buttons(self):
         bold_font = font.Font(family="Arial", size=12, weight="bold")
         #making the buttons
-        self.welcomescreen = ttk.Label(self.main,text='WELCOME',font=bold_font)
-        self.enterstudent = ttk.Button(self.main,text='enter student',command=self.enterscreen_pack)
-        self.findstudent = ttk.Button(self.main,text='find student',command=self.findscreen_pack)
+        self.welcomescreen = ttk.Label(self.main,text='WELCOME',style="label.TLabel")
+        self.enterstudent = ttk.Button(self.main,text='add or update student',command=self.enterscreen_pack,style="Big.TButton")
+        self.findstudent = ttk.Button(self.main,text='find student',command=self.findscreen_pack,style="Big.TButton")
         # all screens have a back button at the botto,
-        self.back = ttk.Button(self.screen,text='cancel',command = self.starterscreen_pack)
+        self.back = ttk.Button(self.screen,text='cancel',command = self.starterscreen_pack,style="cancel.TButton")
         ## making find frame widgets
-        self.enterlabel = ttk.Label(self.find,text="ENTER ID ")
+        self.enterlabel = ttk.Label(self.find,text="ENTER ID ",style="label.TLabel")
         self.findId = ttk.Entry(self.find)
-        self.getId = ttk.Button(self.find,text='submit',command = self.getting_input)
+        self.getId = ttk.Button(self.find,text='submit',command = self.getting_input,style="Big.TButton")
         # buttons for enter user screen, each will remake the frame either enter a new student or enter a new module
-        self.addstudent = ttk.Button(self.enter,text="press here to add a new student",command=self.student_details_pack)
-        self.addmodules = ttk.Button(self.enter,text="Press here to enter modules",command = self.module_details_pack)
+        self.addstudent = ttk.Button(self.enter,text="press here to add a new student",command=self.student_details_pack,style="Big.TButton")
+        self.addmodules = ttk.Button(self.enter,text="Press here to enter modules",command = self.module_details_pack,style="Big.TButton")
         # buttons for entering the student details. will call a function that handles the entering into the student details
-        self.userlabel = ttk.Label(self.makestudent,text='enter name')
+        self.userlabel = ttk.Label(self.makestudent,text='enter name',style="label.TLabel")
         self.nameentry = ttk.Entry(self.makestudent)
-        self.idlabel = ttk.Label(self.makestudent,text='enter id',font=bold_font)
+        self.idlabel = ttk.Label(self.makestudent,text='enter id',style="label.TLabel")
         self.identry = ttk.Entry(self.makestudent)
-        self.year = ttk.Label(self.makestudent,text='enter year',font=bold_font)
+        self.year = ttk.Label(self.makestudent,text='enter year',style="label.TLabel")
         self.yearentry = ttk.Entry(self.makestudent)
-        self.submit = ttk.Button(self.makestudent,text='submit',command=self.adding_student)
+        self.submit = ttk.Button(self.makestudent,text='submit',command=self.adding_student,style="Big.TButton")
         #buttons for making the module details
-        self.enterId = ttk.Label(self.makemodules,text='enter ID',font=bold_font)
+        self.enterId = ttk.Label(self.makemodules,text='enter ID',style="label.TLabel")
         self.IDentry = ttk.Entry(self.makemodules)
-        self.entermodule = ttk.Label(self.makemodules,text = 'enter module',font=bold_font)
+        self.entermodule = ttk.Label(self.makemodules,text = 'enter module',style="label.TLabel")
         self.moduleEntry = ttk.Entry(self.makemodules)
-        self.entergrade = ttk.Label(self.makemodules,text='enter the grade',font=bold_font)
+        self.entergrade = ttk.Label(self.makemodules,text='enter the grade',style="label.TLabel")
         self.gradeEntry = ttk.Entry(self.makemodules)
-        self.Submitmodule = ttk.Button(self.makemodules,text='submit',command=self.addingmodule)
+        self.Submitmodule = ttk.Button(self.makemodules,text='submit',command=self.addingmodule,style="Big.TButton")
         self.entryboxes_list = [self.findId,self.nameentry,self.identry,self.yearentry,self.IDentry]
         ### clear  all entry boxes:
         
