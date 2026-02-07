@@ -158,8 +158,8 @@ class interface:
             messagebox.showerror("error","one or more boxes have been left empty")
         else:
             new_student = student(name,id,year)
-            new_student.adding()
-            messagebox.showinfo("student added :",searcher.getting_specific(new_student.getID()))
+            result = new_student.adding()
+            messagebox.showinfo("student added :",result + str(searcher.getting_specific(new_student.getID())))
             ##return to original screen
             self.starterscreen_pack()
         for e in (self.nameentry,self.identry,self.yearentry):

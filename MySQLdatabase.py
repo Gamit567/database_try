@@ -13,7 +13,7 @@ def creating():
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS students (
         name TEXT,
-        ID TEXT PRIMARY KEY,
+        ID TEXT PRIMARY KEY UNQIUE,
         year TEXT
     )
     """)

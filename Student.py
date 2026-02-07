@@ -21,7 +21,7 @@ class student:
                     conn.close()
                     return "successfully added"
                 else:
-                    print("students with this ID already exists")
+                    return "students with this ID already exists"
             except:
                 return "error adding to database student" + self.getname() + self.getID()
         except:
