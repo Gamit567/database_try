@@ -7,6 +7,10 @@ def getting_specific(ID):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM students WHERE ID=? ",(ID,))
     student = cursor.fetchone()
+    if not student:
+        return f"no Student found"
+    
+
     conn.close()
     return student
 
@@ -25,6 +29,8 @@ def getting_modules_grades(ID):
     cursor.execute("SELECT * FROM Modules WHERE ID=? ",(ID,))
     student = cursor.fetchall()
     conn.close()
+    if not student:
+        return f"no grades found"
     return student
 
 

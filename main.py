@@ -145,7 +145,10 @@ class interface:
         info = searcher.getting_specific(self.r)
                 
         self.findId.delete(0,tk.END)
-        messagebox.showinfo(info,grades)
+        messagebox.showinfo(
+            "Student Info",
+            f"Info: {info}\n\nGrades: {grades}"
+)
 
     def adding_student(self):
         name = self.nameentry.get()
